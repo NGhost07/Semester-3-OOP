@@ -42,7 +42,7 @@ namespace Isu.Database.Infrastructure
             return entity;
         }
 
-        public IList<T> GetAll()
+        public List<T> GetAll()
         {
             return Items;
         }

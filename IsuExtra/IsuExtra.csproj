@@ -17,6 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Model\" />
+    <None Remove="Database\" />
+    <None Remove="Database\Infrastructure\" />
+    <None Remove="Database\Repositories\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Infrastructure\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\.editorconfig" />
   </ItemGroup>
 
@@ -27,4 +35,12 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Database\" />
+    <Folder Include="Database\Infrastructure\" />
+    <Folder Include="Database\Repositories\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Infrastructure\" />
+  </ItemGroup>
 </Project>
