@@ -8,9 +8,10 @@ namespace Isu.Model
 
         public GroupName(string groupName)
         {
-            if (groupName.Substring(0, 2) != "M3"
-                || int.Parse(groupName.Substring(2, 3)) < 100
-                || int.Parse(groupName.Substring(2, 3)) > 999)
+            char c = groupName.Substring(0, 1).ToCharArray()[0];
+            if (!char.IsUpper(c)
+                || int.Parse(groupName.Substring(1, 4)) < 1000
+                || int.Parse(groupName.Substring(1, 4)) > 9999)
             {
                 throw new IsuException("Error: Invalid Group Name!");
             }
