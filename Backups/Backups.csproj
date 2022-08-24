@@ -13,14 +13,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Model\" />
+    <None Remove="Service\" />
+    <None Remove="Database\" />
+    <None Remove="Archivator\" />
+    <None Remove="Common\" />
+    <None Remove="Ionic.Zlib.Core" />
+    <None Remove="DotNetZip" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <Folder Include="Model\" />
+    <Folder Include="Service\" />
+    <Folder Include="Database\" />
+    <Folder Include="Archivator\" />
+    <Folder Include="Common\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+  </ItemGroup>
 </Project>
