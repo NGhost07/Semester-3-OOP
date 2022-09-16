@@ -1,4 +1,5 @@
-﻿using Isu.Database.Infrastructure;
+﻿using System.Linq;
+using Isu.Database.Infrastructure;
 using Isu.Model;
 
 namespace Isu.Database.Repositories
@@ -27,15 +28,9 @@ namespace Isu.Database.Repositories
 
         public GroupName FindGroupName(string name)
         {
-            foreach (GroupName groupName in Items)
-            {
-                if (groupName.Name == name)
-                {
-                    return groupName;
-                }
-            }
+            var groupNames = Items.Where(gn => gn.Name == name).Select(gn => gn);
 
-            return null;
+            return groupNames.Count() == 0 ? null : groupNames.First();
         }
     }
 }

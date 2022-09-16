@@ -10,8 +10,8 @@
             GroupName = groupName;
         }
 
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public GroupName GroupName { get; set; }
+        public GroupName GroupName { get; private set; }
     }
 }

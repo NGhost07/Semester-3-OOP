@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Isu.Database.Infrastructure;
 using Isu.Model;
 
@@ -28,43 +29,25 @@ namespace Isu.Database.Repositories
 
         public Student FindStudent(string name)
         {
-            foreach (Student student in Items)
-            {
-                if (student.Name == name)
-                {
-                    return student;
-                }
-            }
+            var students = Items.Where(student => student.Name == name).Select(student => student);
 
-            return null;
+            return students.First();
         }
 
-        public List<Student> FindStudents(GroupName groupName)
+        public IList<Student> FindStudents(GroupName groupName)
         {
-            var students = new List<Student>();
-            foreach (Student student in Items)
-            {
-                if (student.Group.GroupName.Name == groupName.Name)
-                {
-                    students.Add(student);
-                }
-            }
+            var students = Items.Where(s => s.Group.GroupName.Name == groupName.Name)
+                .Select(s => s);
 
-            return students;
+            return students.Count() == 0 ? null : students.ToList();
         }
 
-        public List<Student> FindStudents(CourseNumber courseNumber)
+        public IList<Student> FindStudents(CourseNumber courseNumber)
         {
-            var students = new List<Student>();
-            foreach (Student student in Items)
-            {
-                if (student.Group.GroupName.CourseNumber.Course == courseNumber.Course)
-                {
-                    students.Add(student);
-                }
-            }
+            var students = Items.Where(s => s.Group.GroupName.CourseNumber.Course == courseNumber.Course)
+                .Select(s => s);
 
-            return students;
+            return students.Count() == 0 ? null : students.ToList();
         }
     }
 }

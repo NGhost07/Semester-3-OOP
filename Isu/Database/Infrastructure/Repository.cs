@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Isu.Model;
 
 namespace Isu.Database.Infrastructure
@@ -11,7 +12,7 @@ namespace Isu.Database.Infrastructure
             Items = new List<T>();
         }
 
-        protected List<T> Items { get; private set; }
+        protected IList<T> Items { get; private set; }
 
         public T Add(T entity)
         {
@@ -22,17 +23,9 @@ namespace Isu.Database.Infrastructure
 
         public T Delete(int id)
         {
-            foreach (T item in Items)
-            {
-                if (item.Id == id)
-                {
-                    Items.Remove(item);
+            var items = Items.Where(item => item.Id == id).Select(item => item);
 
-                    return item;
-                }
-            }
-
-            return null;
+            return (items.Count() == 0) ? null : items.First();
         }
 
         public T Delete(T entity)
@@ -42,37 +35,28 @@ namespace Isu.Database.Infrastructure
             return entity;
         }
 
-        public List<T> GetAll()
+        public IList<T> GetAll()
         {
             return Items;
         }
 
         public T GetById(int id)
         {
-            foreach (T item in Items)
-            {
-                if (item.Id == id)
-                {
-                    return item;
-                }
-            }
+            var items = Items.Where(item => item.Id == id).Select(item => item);
 
-            return null;
+            return (items.Count() == 0) ? null : items.First();
         }
 
         public T Update(T entity)
         {
-            for (int i = 0; i < Items.Count; i++)
-            {
-                if (Items[i].Id == entity.Id)
-                {
-                    Items[i] = entity;
+            if (entity == null)
+                return null;
 
-                    return Items[i];
-                }
-            }
+            int index = Items.IndexOf(entity);
+            Items.RemoveAt(index);
+            Items.Insert(index, entity);
 
-            return null;
+            return entity;
         }
     }
 }

@@ -17,8 +17,8 @@ namespace Isu.Model
             Course = course;
         }
 
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public int Course { get; set; }
+        public int Course { get; private set; }
     }
 }

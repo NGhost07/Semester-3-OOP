@@ -15,10 +15,10 @@ namespace Isu.Service
 
         public IsuService()
         {
-            _courseNumberRepository = new CourseNumberRepository();
-            _groupNameRepository = new GroupNameRepository();
-            _groupRepository = new GroupRepository();
-            _studentRepository = new StudentRepository();
+            _courseNumberRepository = CourseNumberRepository.GetInstance();
+            _groupNameRepository = GroupNameRepository.GetInstance();
+            _groupRepository = GroupRepository.GetInstance();
+            _studentRepository = StudentRepository.GetInstance();
         }
 
         public Group AddGroup(GroupName groupName)
@@ -63,7 +63,7 @@ namespace Isu.Service
             return _groupRepository.FindGroup(groupName);
         }
 
-        public List<Group> FindGroups(CourseNumber courseNumber)
+        public IList<Group> FindGroups(CourseNumber courseNumber)
         {
             return _groupRepository.FindGroups(courseNumber);
         }
@@ -73,12 +73,12 @@ namespace Isu.Service
             return _studentRepository.FindStudent(name);
         }
 
-        public List<Student> FindStudents(GroupName groupName)
+        public IList<Student> FindStudents(GroupName groupName)
         {
             return _studentRepository.FindStudents(groupName);
         }
 
-        public List<Student> FindStudents(CourseNumber courseNumber)
+        public IList<Student> FindStudents(CourseNumber courseNumber)
         {
             return _studentRepository.FindStudents(courseNumber);
         }
@@ -86,12 +86,8 @@ namespace Isu.Service
         public Student GetStudent(int id)
         {
             Student student = _studentRepository.GetById(id);
-            if (student == null)
-            {
-                throw new IsuException("This student is not exist!");
-            }
 
-            return student;
+            return student == null ? throw new IsuException("This student is not exist!") : student;
         }
     }
 }

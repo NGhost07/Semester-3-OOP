@@ -1,4 +1,5 @@
-﻿using Isu.Database.Infrastructure;
+﻿using System.Linq;
+using Isu.Database.Infrastructure;
 using Isu.Model;
 
 namespace Isu.Database.Repositories
@@ -27,15 +28,9 @@ namespace Isu.Database.Repositories
 
         public CourseNumber FindCourseNumber(int course)
         {
-            foreach (CourseNumber courseNumber in Items)
-            {
-                if (courseNumber.Course == course)
-                {
-                    return courseNumber;
-                }
-            }
+            var courses = Items.Where(c => c.Course == course).Select(c => c);
 
-            return null;
+            return courses.Count() == 0 ? null : courses.First();
         }
     }
 }
