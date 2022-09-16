@@ -6,6 +6,6 @@ namespace Isu.Database.Infrastructure
     public interface IGroupRepository : IRepository<Group>
     {
         Group FindGroup(GroupName groupName);
-        List<Group> FindGroups(CourseNumber courseNumber);
+        IList<Group> FindGroups(CourseNumber courseNumber);
     }
 }

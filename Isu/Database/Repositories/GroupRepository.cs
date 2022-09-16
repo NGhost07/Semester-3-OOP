@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Isu.Database.Infrastructure;
 using Isu.Model;
 
@@ -28,29 +29,17 @@ namespace Isu.Database.Repositories
 
         public Group FindGroup(GroupName groupName)
         {
-            foreach (Group group in Items)
-            {
-                if (group.GroupName.Name == groupName.Name)
-                {
-                    return group;
-                }
-            }
+            var groups = Items.Where(g => g.GroupName.Name == groupName.Name).Select(g => g);
 
-            return null;
+            return groups.Count() == 0 ? null : groups.First();
         }
 
-        public List<Group> FindGroups(CourseNumber courseNumber)
+        public IList<Group> FindGroups(CourseNumber courseNumber)
         {
-            var groups = new List<Group>();
-            foreach (Group group in Items)
-            {
-                if (group.GroupName.CourseNumber.Course == courseNumber.Course)
-                {
-                    groups.Add(group);
-                }
-            }
+            var groups = Items.Where(g => g.GroupName.CourseNumber.Course == courseNumber.Course)
+                .Select(g => g);
 
-            return groups;
+            return groups.Count() == 0 ? null : groups.ToList();
         }
     }
 }

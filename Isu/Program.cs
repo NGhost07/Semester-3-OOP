@@ -1,4 +1,6 @@
-﻿namespace Isu
+﻿using System.Collections;
+
+namespace Isu
 {
     internal class Program
     {

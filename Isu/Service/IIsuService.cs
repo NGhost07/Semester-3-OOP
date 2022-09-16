@@ -10,11 +10,11 @@ namespace Isu.Service
 
         Student GetStudent(int id);
         Student FindStudent(string name);
-        List<Student> FindStudents(GroupName groupName);
-        List<Student> FindStudents(CourseNumber courseNumber);
+        IList<Student> FindStudents(GroupName groupName);
+        IList<Student> FindStudents(CourseNumber courseNumber);
 
         Group FindGroup(GroupName groupName);
-        List<Group> FindGroups(CourseNumber courseNumber);
+        IList<Group> FindGroups(CourseNumber courseNumber);
 
         void ChangeStudentGroup(Student student, Group newGroup);
     }

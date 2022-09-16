@@ -22,12 +22,12 @@ namespace Isu.Model
             GroupNumber = int.Parse(groupName.Substring(3, 2));
         }
 
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public CourseNumber CourseNumber { get; set; }
+        public CourseNumber CourseNumber { get; private set; }
 
-        public int GroupNumber { get; set; }
+        public int GroupNumber { get; private set; }
     }
 }

@@ -12,6 +12,6 @@ namespace Isu.Database.Infrastructure
         T Delete(T entity);
 
         T GetById(int id);
-        List<T> GetAll();
+        IList<T> GetAll();
     }
 }
